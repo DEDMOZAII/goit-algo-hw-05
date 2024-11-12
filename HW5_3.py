@@ -17,32 +17,20 @@ def parse_input(user_input):
 
 @input_error
 def add_contact(args, contacts):
-    if len(args) != 2:
-        raise ValueError
     name, phone = args
     contacts[name] = phone
     return f"Contact '{name}' added."
 
 @input_error
 def change_contact(args, contacts):
-    if len(args) != 2:
-        raise ValueError
     name, new_phone = args
-    if name in contacts:
-        contacts[name] = new_phone
-        return f"Contact '{name}' updated."
-    else:
-        raise KeyError
+    contacts[name] = new_phone
+    return f"Contact '{name}' updated."
 
 @input_error
 def show_phone(args, contacts):
-    if len(args) != 1:
-        raise IndexError
     name = args[0]
-    if name in contacts:
-        return f"The phone number of '{name}' is {contacts[name]}"
-    else:
-        raise KeyError
+    return f"The phone number of '{name}' is {contacts[name]}"
 
 @input_error
 def show_all(contacts):
@@ -65,20 +53,11 @@ def main():
         elif command == "hello":
             print("How can I help you?")
         elif command == "add":
-            if args:
-                print(add_contact(args, contacts))
-            else:
-                print("Enter the argument for the command")
+            print(add_contact(args, contacts))
         elif command == "change":
-            if args:
-                print(change_contact(args, contacts))
-            else:
-                print("Enter the argument for the command")
+            print(change_contact(args, contacts))
         elif command == "phone":
-            if args:
-                print(show_phone(args, contacts))
-            else:
-                print("Enter the argument for the command")
+            print(show_phone(args, contacts))
         elif command == "all":
             print(show_all(contacts))
         else:
